@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -11,6 +12,16 @@ from playwright.async_api import (
 )
 
 from claude_agent import ClaudeAgent
+
+_NUMERIC_LABEL_RE = re.compile(
+    r"how many years|years of experience|years with|years using|years in|"
+    r"number of years|experience \(years\)|experience in years|"
+    r"how long have you|years? working",
+    re.IGNORECASE,
+)
+
+def _is_numeric_label(label: str) -> bool:
+    return bool(_NUMERIC_LABEL_RE.search(label))
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -409,9 +420,15 @@ class LinkedInBot:
             if not label:
                 continue
             input_type = await inp.get_attribute("type") or "text"
-            field_type = "number" if input_type == "number" else "text"
+            # Treat as number if HTML type=number OR label asks for years/count
+            is_numeric = input_type == "number" or _is_numeric_label(label)
+            field_type = "number" if is_numeric else "text"
             answer = await self.claude.get_answer(label, field_type, title, company)
             if answer:
+                # Always strip units before filling a numeric field
+                if is_numeric:
+                    m = re.search(r"\d+", answer)
+                    answer = m.group() if m else answer
                 await inp.fill(answer)
 
         # --- Selects ---
