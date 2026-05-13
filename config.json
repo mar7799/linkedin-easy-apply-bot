@@ -1,7 +1,9 @@
 {
   "search": {
     "search_urls": [
-      "https://www.linkedin.com/jobs/search/?keywords=senior+java+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD"
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD",
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+full+stack+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD",
+      "https://www.linkedin.com/jobs/search/?keywords=senior+backend+developer+java&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD"
     ],
     "max_applications": 25,
     "delay_between_apps_seconds": 4
