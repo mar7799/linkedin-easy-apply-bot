@@ -1,0 +1,52 @@
+{
+  "search": {
+    "search_urls": [
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD"
+    ],
+    "max_applications": 25,
+    "delay_between_apps_seconds": 4
+  },
+  "profile": {
+    "name": "Amram Raju",
+    "email": "amram.fsd@gmail.com",
+    "phone": "+1 (469) 319 0842",
+    "linkedin_url": "https://www.linkedin.com/in/amram-raju/",
+    "github_url": "FILL_IN"
+  },
+  "answers": {
+    "authorized_to_work_us": "Yes",
+    "require_sponsorship": "no",
+    "salary_expectation_annual": "120000-140000",
+    "salary_expectation_hourly": "60$-75$",
+    "desired_start_date": "Immediately",
+    "notice_period": "1 week",
+    "currently_employed": "Yes",
+    "willing_to_relocate": "Yes",
+    "work_preference": "hybrid/remote/onsite",
+    "employment_type": "contract/full-time",
+    "security_clearance": "No",
+    "education_level": "Master's Degree",
+    "field_of_study": "Computer Science",
+    "gpa": "4.7",
+    "years_java": "8",
+    "years_spring_boot": "7",
+    "years_spring": "8",
+    "years_react": "6",
+    "years_nodejs": "6",
+    "years_aws": "6",
+    "years_azure": "4",
+    "years_microservices": "7",
+    "years_kubernetes": "5",
+    "years_docker": "6",
+    "years_kafka": "4",
+    "years_typescript": "5",
+    "years_sql": "8",
+    "years_python": "4",
+    "years_graphql": "4",
+    "how_did_you_hear": "LinkedIn",
+    "gender": "male",
+    "ethnicity": "asian",
+    "veteran_status": "I am not a protected veteran",
+    "disability_status": "no, I don't have a disability"
+  }
+}

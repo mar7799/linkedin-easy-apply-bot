@@ -1,0 +1,18 @@
+# secrets & credentials
+.env
+session.json
+
+# personal data
+applied_jobs.json
+resume_context.txt
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# mac
+.DS_Store
