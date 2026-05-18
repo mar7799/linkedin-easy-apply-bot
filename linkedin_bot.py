@@ -12,6 +12,7 @@ from playwright.async_api import (
 )
 
 from claude_agent import ClaudeAgent
+from logger_setup import log_event
 
 _NUMERIC_LABEL_RE = re.compile(
     r"how many years|years of experience|years with|years using|years in|"
@@ -204,6 +205,7 @@ class LinkedInBot:
                 current = page.url
                 if "login" in current or "authwall" in current or "checkpoint" in current:
                     logger.error("Redirected to login — session expired. Run save_session.py to refresh.")
+                    log_event("session", reason="login redirect — session expired", extra={"url": current})
                     return applied
                 logger.info(f"  Loaded: {current}")
 
@@ -222,12 +224,14 @@ class LinkedInBot:
                 # Relevance check — skip titles outside your stack
                 if not self._is_relevant_title(title):
                     logger.info(f"  skip (irrelevant title): {title} @ {company}")
+                    log_event("skipped", job_id=job_id, title=title, company=company, reason="irrelevant title")
                     self.applied_ids.add(job_id)
                     continue
 
                 easy_btn = await self._find_easy_apply_button(page)
                 if not easy_btn:
                     logger.info(f"  skip (no Easy Apply): {title} @ {company}")
+                    log_event("skipped", job_id=job_id, title=title, company=company, reason="no Easy Apply button")
                     self.applied_ids.add(job_id)
                     continue
 
@@ -243,8 +247,10 @@ class LinkedInBot:
                     log_applied(job_id, title, company)
                     applied += 1
                     logger.info(f"  APPLIED ({applied}/{max_apps}): {title} @ {company}")
+                    log_event("applied", job_id=job_id, title=title, company=company)
                 else:
                     logger.warning(f"  FAILED or SKIPPED: {title} @ {company}")
+                    log_event("failed", job_id=job_id, title=title, company=company, reason="modal did not complete")
 
                 await page.wait_for_timeout(delay * 1000)
 

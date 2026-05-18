@@ -2,6 +2,9 @@
 .env
 session.json
 
+# logs
+logs/
+
 # personal data
 applied_jobs.json
 resume_context.txt
