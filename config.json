@@ -1,12 +1,23 @@
 {
   "search": {
     "search_urls": [
-      "https://www.linkedin.com/jobs/search/?keywords=senior+java+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD",
-      "https://www.linkedin.com/jobs/search/?keywords=senior+java+full+stack+developer&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD",
-      "https://www.linkedin.com/jobs/search/?keywords=senior+backend+developer+java&geoId=103644278&f_TPR=r86400&f_JT=C&f_WT=2&f_LF=f_AL&sortBy=DD"
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+developer&geoId=103644278&distance=0.0&f_TPR=r604800&f_AL=true&f_SAL=f_SA_id_226001%3A274001",
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+full+stack+developer&geoId=103644278&distance=0.0&f_TPR=r604800&f_AL=true&f_SAL=f_SA_id_226001%3A274001",
+      "https://www.linkedin.com/jobs/search/?keywords=senior+spring+boot+developer&geoId=103644278&distance=0.0&f_TPR=r604800&f_AL=true&f_SAL=f_SA_id_226001%3A274001",
+      "https://www.linkedin.com/jobs/search/?keywords=senior+java+backend+developer&geoId=103644278&distance=0.0&f_TPR=r604800&f_AL=true&f_SAL=f_SA_id_226001%3A274001"
     ],
     "max_applications": 25,
-    "delay_between_apps_seconds": 4
+    "delay_between_apps_seconds": 4,
+    "title_must_contain_one_of": [
+      "java", "spring", "j2ee", "jvm", "full stack", "fullstack",
+      "backend developer", "microservice", "api developer"
+    ],
+    "title_must_not_contain": [
+      ".net", "c#", "php", "ios", "android", "salesforce", "sap",
+      "ruby", "golang", "cobol", "react developer", "angular developer",
+      "front end developer", "frontend developer", "ui developer",
+      "python developer", "data engineer", "ml engineer", "devops engineer"
+    ]
   },
   "profile": {
     "name": "Amram Raju",

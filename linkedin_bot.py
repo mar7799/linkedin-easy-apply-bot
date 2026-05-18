@@ -73,6 +73,24 @@ class LinkedInBot:
         self.search = config["search"]
         self.claude = ClaudeAgent(config)
         self.applied_ids = load_applied_ids()
+        self._title_must_contain = [
+            t.lower() for t in self.search.get("title_must_contain_one_of", [])
+        ]
+        self._title_must_not_contain = [
+            t.lower() for t in self.search.get("title_must_not_contain", [])
+        ]
+
+    def _is_relevant_title(self, title: str) -> bool:
+        t = title.lower()
+        # Reject if any banned keyword present
+        for bad in self._title_must_not_contain:
+            if bad in t:
+                return False
+        # Accept if no must-contain list defined
+        if not self._title_must_contain:
+            return True
+        # Accept if at least one required keyword present
+        return any(good in t for good in self._title_must_contain)
 
     # ------------------------------------------------------------------ #
 
@@ -200,6 +218,12 @@ class LinkedInBot:
                     ".topcard__org-name-link",
                     ".job-details-jobs-unified-top-card__primary-description-without-tagline a",
                 ])
+
+                # Relevance check — skip titles outside your stack
+                if not self._is_relevant_title(title):
+                    logger.info(f"  skip (irrelevant title): {title} @ {company}")
+                    self.applied_ids.add(job_id)
+                    continue
 
                 easy_btn = await self._find_easy_apply_button(page)
                 if not easy_btn:
